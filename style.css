@@ -1,0 +1,130 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /* Remove margem padrão do body */
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 20px; /* Adiciona espaço entre o título e a lista de provas */
+    color: #06364d; /* Cor para o título */
+}
+
+#cronometro {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #06364d;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+.buttons button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#finalizarBtn {
+    background-color: #dc3545;
+}
+
+.logoff {
+    display: inline-block;
+    padding: 10px 15px;
+    color: white;
+    background-color: #d9534f; /* Cor vermelha */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    position: fixed; /* Fixa o botão na tela */
+    top: 20px; /* Distância do topo da página */
+    left: 20px; /* Distância da esquerda da página */
+    z-index: 1000; /* Para garantir que o botão fique acima de outros elementos */
+}
+
+.logoff > a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Seleção de Provas */
+.opcoes-provas {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #eaeaea;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+li:hover {
+    background-color: #d1d1d1; /* Cor ao passar o mouse */
+}
+
+li.selected {
+    background-color: #b3ffb3; /* Cor para seleção */
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c; /* Cor verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #4cae4c; /* Cor verde mais escura */
+}
+
+#mensagem {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
