@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<nav>
+        <div class="hamburger" id="hamburger">
+            &#9776; <!-- Ícone de hambúrguer -->
+        </div>
+        <ul class="menu" id="menu">
+            <li><a href="#">Pontuação Geral</a></li>
+            <li><a href="#">Meus Pontos</a></li>
+            <li><a href="#">Adicionar Observação</a></li>
+        </ul>
+    </nav>
+
     <div class="logoff">
         <a href="./login/logout.php" class="btn">Logoff</a>
     </div>
@@ -19,7 +30,8 @@
                 <li data-value="Prova 2">Prova 2</li>
                 <li data-value="Prova 3">Prova 3</li>
                 <li data-value="Prova 4">Prova 4</li>
-                <li data-value="Prova 5">Prova 5</li>
+                
+
             </ul>
             <button id="salvar">Salvar Seleção</button>
             <div id="mensagem"></div>
@@ -35,6 +47,22 @@
             <button id="finalizarBtn">Finalizar Prova</button>
         </div>
     </div>
+
+
+<!-- MODAL  -->
+
+<!-- Modal de Confirmação -->
+<!-- Modal de Confirmação -->
+<div id="modalConfirmacao" class="modal">
+    <div class="modal-conteudo">
+        <h2>Confirmar Finalização</h2>
+        <p>Você tem certeza que deseja finalizar a prova?</p>
+        <button id="btnConfirmar">Confirmar</button>
+        <button id="btnCancelar">Cancelar</button>
+    </div>
+</div>
+
+
 
     <script src="scripts.js"></script>
 </body>

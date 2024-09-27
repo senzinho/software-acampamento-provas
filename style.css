@@ -2,16 +2,82 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
     background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0; /* Remove margem padrão do body */
 }
+
+/* menu */
+
+
+.content {
+    padding: 100px 20px; /* Adiciona um espaçamento no conteúdo para não ficar abaixo do menu */
+}
+
+/* Estilos do menu */
+nav {
+    background-color: #333;
+    padding: 10px;
+    position: fixed; /* Faz o menu ficar fixo no topo */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa toda a largura da página */
+    z-index: 1000; /* Certifica-se de que o menu fica na frente do conteúdo */
+}
+
+/* Ícone de hambúrguer */
+.hamburger {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    display: block;
+}
+
+/* Estilos da lista do menu */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none; /* Ocultar o menu inicialmente */
+}
+
+.menu li {
+    background-color: #333;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* Efeito ao passar o mouse */
+.menu li:hover {
+    background-color: #555;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none; /* Ocultar o ícone de hambúrguer em telas maiores */
+    }
+    .menu {
+        display: flex; /* Exibir o menu horizontalmente em telas maiores */
+        justify-content: flex-start;
+    }
+    .menu li {
+        border: none;
+    }
+    .menu li a {
+        padding: 10px 20px;
+    }
+}
+
+
 
 .container {
     background-color: white;
@@ -19,6 +85,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-top: 35px;
 }
 
 h1 {
@@ -56,9 +123,14 @@ h2 {
     background-color: #dc3545;
 }
 
+#pausarBtn {
+    background-color: #0b81b9;
+}
+
 .logoff {
     display: inline-block;
     padding: 10px 15px;
+    margin-top: -10px;
     color: white;
     background-color: #d9534f; /* Cor vermelha */
     border: none;
@@ -67,7 +139,7 @@ h2 {
     font-weight: bold;
     position: fixed; /* Fixa o botão na tela */
     top: 20px; /* Distância do topo da página */
-    left: 20px; /* Distância da esquerda da página */
+    right: 20px; /* Distância da esquerda da página */
     z-index: 1000; /* Para garantir que o botão fique acima de outros elementos */
 }
 
@@ -127,4 +199,40 @@ button:hover {
     margin-top: 20px;
     text-align: center;
     font-weight: bold;
+}
+
+/* CSS DO MODAL */
+
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); /* Cor de fundo com transparência */
+}
+
+.modal-conteudo {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; 
+    text-align: center;
+}
+
+.modal h2 {
+    margin: 0 0 15px;
+}
+
+.modal button {
+    margin: 5px;
+}
+
+#btnCancelar{
+    background-color: #dc3545;
 }

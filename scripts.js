@@ -1,3 +1,15 @@
+// Função para abrir e fechar o menu ao clicar no hambúrguer
+// Função para abrir e fechar o menu ao clicar no hambúrguer
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+
+hamburger.addEventListener('click', () => {
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+});
+
+
+// fim
+
 let horas = 0;
 let minutos = 0;
 let segundos = 0;
@@ -46,11 +58,29 @@ function pausarCronometro() {
 
 function finalizarCronometro() {
     clearInterval(cronometro);
-    iniciarBtn.disabled = false;
+    iniciarBtn.disabled = false; // Habilita o botão de iniciar
     pausarBtn.disabled = true; // Desativa o botão de pausar
     finalizarBtn.disabled = true; // Desativa o botão de finalizar
-    enviarTempo();
+
+    // Exibe o modal de confirmação
+    const modal = document.getElementById("modalConfirmacao");
+    modal.style.display = "block"; // Mostra o modal
+
+    // Eventos dos botões do modal
+    document.getElementById("btnConfirmar").onclick = function() {
+        enviarTempo(); // Envia o tempo e recarrega a página
+        modal.style.display = "none"; // Fecha o modal
+    }
+
+    document.getElementById("btnCancelar").onclick = function() {
+        modal.style.display = "none"; // Fecha o modal
+        iniciarBtn.disabled = false; // Habilita novamente o botão de iniciar
+        pausarBtn.disabled = false; // Habilita o botão de pausar
+        finalizarBtn.disabled = false; // Habilita o botão de finalizar
+    }
 }
+
+
 
 function atualizarDisplay() {
     horasEl.textContent = horas < 10 ? `0${horas}` : horas;
@@ -59,13 +89,25 @@ function atualizarDisplay() {
 }
 
 function enviarTempo() {
+    const provaSalva = localStorage.getItem('provaSelecionada'); // Obtém a prova selecionada do localStorage
+    
+    if (!provaSalva) {
+        console.log('Nenhuma prova selecionada.');
+        return; // Se não houver prova selecionada, não envia os dados
+    }
+
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "salvar_tempo.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     
-    const provaSalva = provaSelecionada ? provaSelecionada.getAttribute('data-value') : null; // Obter o valor da prova selecionada
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log('Tempo enviado com sucesso!');
+            window.location.reload(); // Recarrega a página após o sucesso
+        }
+    };
 
-    // Enviar os dados: horas, minutos, segundos e prova selecionada
+    // Inclui a prova selecionada nos dados enviados
     xhr.send(`horas=${horas}&minutos=${minutos}&segundos=${segundos}&prova_selecionada=${provaSalva}`);
 }
 

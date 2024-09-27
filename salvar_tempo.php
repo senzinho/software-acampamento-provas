@@ -27,28 +27,33 @@ $user_id = $_SESSION['user_id'];
 
 // Verificar se é uma requisição POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $horas = $_POST['horas'];
-    $minutos = $_POST['minutos'];
-    $segundos = $_POST['segundos'];
-    $provaSelecionada = $_POST['prova_selecionada']; // Obtendo a prova selecionada
+    // Verificar se todos os campos necessários estão presentes
+    if (isset($_POST['horas'], $_POST['minutos'], $_POST['segundos'], $_POST['prova_selecionada'])) {
+        $horas = $_POST['horas'];
+        $minutos = $_POST['minutos'];
+        $segundos = $_POST['segundos'];
+        $provaSelecionada = $_POST['prova_selecionada']; // Obtendo a prova selecionada
+        
+        // Preparar a query de inserção
+        $sql = "INSERT INTO tempos_tarefas (user_id, horas, minutos, segundos, prova_selecionada) VALUES (:user_id, :horas, :minutos, :segundos, :prova_selecionada)";
+        $stmt = $conn->prepare($sql);
 
-    // Preparar a query de inserção
-    $sql = "INSERT INTO tempos_tarefas (user_id, horas, minutos, segundos, prova_selecionada) VALUES (:user_id, :horas, :minutos, :segundos, :prova_selecionada)";
-    $stmt = $conn->prepare($sql);
+        // Vincular os parâmetros e executar a query
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindParam(':horas', $horas, PDO::PARAM_INT);
+        $stmt->bindParam(':minutos', $minutos, PDO::PARAM_INT);
+        $stmt->bindParam(':segundos', $segundos, PDO::PARAM_INT);
+        $stmt->bindParam(':prova_selecionada', $provaSelecionada, PDO::PARAM_STR);
 
-    // Vincular os parâmetros e executar a query
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->bindParam(':horas', $horas, PDO::PARAM_INT);
-    $stmt->bindParam(':minutos', $minutos, PDO::PARAM_INT);
-    $stmt->bindParam(':segundos', $segundos, PDO::PARAM_INT);
-    $stmt->bindParam(':prova_selecionada', $provaSelecionada, PDO::PARAM_STR); // Vinculando a prova selecionada
-
-    if ($stmt->execute()) {
-        echo 'Tempo e prova salvos com sucesso no banco de dados!';
+        if ($stmt->execute()) {
+            echo 'Tempo e prova salvos com sucesso no banco de dados!';
+        } else {
+            echo 'Erro ao salvar o tempo e a prova.';
+        }
     } else {
-        echo 'Erro ao salvar o tempo e a prova.';
+        echo 'Dados incompletos.';
     }
 } else {
     echo 'Método inválido!';
 }
-?>
+
