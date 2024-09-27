@@ -1,14 +1,4 @@
-// Função para abrir e fechar o menu ao clicar no hambúrguer
-// Função para abrir e fechar o menu ao clicar no hambúrguer
-const hamburger = document.getElementById('hamburger');
-const menu = document.getElementById('menu');
 
-hamburger.addEventListener('click', () => {
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-});
-
-
-// fim
 
 let horas = 0;
 let minutos = 0;

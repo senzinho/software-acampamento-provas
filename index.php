@@ -1,3 +1,13 @@
+
+<?php
+session_start(); // Iniciar a sessão
+// Código de autenticação e lógica do seu aplicativo aqui
+
+// Incluindo o menu
+include 'menu.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,21 +17,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
-        <div class="hamburger" id="hamburger">
-            &#9776; <!-- Ícone de hambúrguer -->
-        </div>
-        <ul class="menu" id="menu">
-            <li><a href="#">Pontuação Geral</a></li>
-            <li><a href="/aplicativo_acampamento_controle_de_provas/faixas_tempo_user/">Meus Pontos</a></li>
-            <li><a href="#">Adicionar Observação</a></li>
-        </ul>
-    </nav>
 
-    <div class="logoff">
-        <a href="./login/logout.php" class="btn">Logoff</a>
-    </div>
-    
     <div class="container">
         <h2>Selecione sua Prova</h2>
         <div class="opcoes-provas">

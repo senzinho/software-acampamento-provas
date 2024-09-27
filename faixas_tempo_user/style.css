@@ -1,0 +1,97 @@
+/* Estilos gerais */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    padding: 10px; /* Reduzir o padding em mobile */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.debug-info, .total, .no-tempos {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.faixa {
+    background-color: #e9e9e9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.faixa span {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+/* Responsividade para tablets e telas menores */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .faixa {
+        flex-direction: column;
+    }
+
+    .faixa span {
+        font-size: 0.9rem;
+    }
+
+    .total, .debug-info {
+        font-size: 1rem;
+    }
+}
+
+/* Responsividade para telas pequenas (mobile) */
+@media (max-width: 480px) {
+    body {
+        padding: 5px; /* Reduzir o padding em mobile */
+    }
+
+    .container {
+        padding: 10px; /* Reduzir o padding da div container */
+    }
+
+    h1 {
+        font-size: 1.6rem; /* Reduzir o tamanho da fonte para cabeçalho */
+    }
+
+    .faixa {
+        padding: 10px; /* Reduzir o padding das faixas */
+    }
+
+    .faixa span {
+        font-size: 0.8rem; /* Reduzir o tamanho da fonte nas faixas */
+        display: block; /* Certificar que cada span ocupe uma linha */
+        margin-bottom: 8px;
+    }
+
+    .total, .debug-info {
+        font-size: 0.85rem; /* Reduzir o tamanho da fonte de informações extras */
+        text-align: left; /* Garantir alinhamento correto em telas menores */
+    }
+    
+    /* Ajustes adicionais para melhorar a visualização em telas pequenas */
+    .faixa span strong {
+        display: block;
+        margin-bottom: 2px;
+    }
+}

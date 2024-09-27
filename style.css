@@ -9,74 +9,12 @@ body {
     background-color: #f4f4f4;
 }
 
-/* menu */
+
 
 
 .content {
     padding: 100px 20px; /* Adiciona um espaçamento no conteúdo para não ficar abaixo do menu */
 }
-
-/* Estilos do menu */
-nav {
-    background-color: #333;
-    padding: 10px;
-    position: fixed; /* Faz o menu ficar fixo no topo */
-    top: 0;
-    left: 0;
-    width: 100%; /* Ocupa toda a largura da página */
-    z-index: 1000; /* Certifica-se de que o menu fica na frente do conteúdo */
-}
-
-/* Ícone de hambúrguer */
-.hamburger {
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    display: block;
-}
-
-/* Estilos da lista do menu */
-.menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: none; /* Ocultar o menu inicialmente */
-}
-
-.menu li {
-    background-color: #333;
-    padding: 10px;
-    border-bottom: 1px solid #444;
-}
-
-.menu li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-/* Efeito ao passar o mouse */
-.menu li:hover {
-    background-color: #555;
-}
-
-/* Responsividade */
-@media (min-width: 768px) {
-    .hamburger {
-        display: none; /* Ocultar o ícone de hambúrguer em telas maiores */
-    }
-    .menu {
-        display: flex; /* Exibir o menu horizontalmente em telas maiores */
-        justify-content: flex-start;
-    }
-    .menu li {
-        border: none;
-    }
-    .menu li a {
-        padding: 10px 20px;
-    }
-}
-
 
 
 .container {
@@ -106,12 +44,12 @@ h2 {
 
 .buttons button {
     padding: 10px 20px;
-    margin: 10px;
     border: none;
     border-radius: 5px;
     background-color: #28a745;
     color: white;
     cursor: pointer;
+    
 }
 
 .buttons button:disabled {
@@ -127,26 +65,7 @@ h2 {
     background-color: #0b81b9;
 }
 
-.logoff {
-    display: inline-block;
-    padding: 10px 15px;
-    margin-top: -10px;
-    color: white;
-    background-color: #d9534f; /* Cor vermelha */
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    position: fixed; /* Fixa o botão na tela */
-    top: 20px; /* Distância do topo da página */
-    right: 20px; /* Distância da esquerda da página */
-    z-index: 1000; /* Para garantir que o botão fique acima de outros elementos */
-}
 
-.logoff > a {
-    text-decoration: none;
-    color: white;
-}
 
 /* Seleção de Provas */
 .opcoes-provas {
@@ -166,9 +85,10 @@ ul {
 li {
     padding: 10px;
     margin: 5px 0;
-    background-color: #eaeaea;
+    background-color: #cbcbcb;
     cursor: pointer;
     border-radius: 5px;
+    
 }
 
 li:hover {
