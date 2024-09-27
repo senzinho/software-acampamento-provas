@@ -13,7 +13,7 @@
         </div>
         <ul class="menu" id="menu">
             <li><a href="#">Pontuação Geral</a></li>
-            <li><a href="#">Meus Pontos</a></li>
+            <li><a href="/aplicativo_acampamento_controle_de_provas/faixas_tempo_user/">Meus Pontos</a></li>
             <li><a href="#">Adicionar Observação</a></li>
         </ul>
     </nav>
