@@ -13,12 +13,14 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
 }
 
 h1 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
+   
 }
 
 .debug-info, .total, .no-tempos {
@@ -58,6 +60,10 @@ h1 {
     .total, .debug-info {
         font-size: 1rem;
     }
+    .container {
+        padding: 10px; /* Reduzir o padding da div container */
+        padding-top: 30px;
+    }
 }
 
 /* Responsividade para telas pequenas (mobile) */
@@ -94,4 +100,8 @@ h1 {
         display: block;
         margin-bottom: 2px;
     }
+
+  
 }
+
+

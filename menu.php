@@ -119,7 +119,7 @@
         <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/faixas_tempo_user/">Meus Pontos</a></li>
         <li><a href="#">Adicionar Observação</a></li>
         <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/">Jogar</a></li>
-        <li><a href="../login/logout.php">Logoff</a></li> <!-- Adicionando o link de logoff -->
+        <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/login/logout.php">Logoff</a></li> <!-- Adicionando o link de logoff -->
     </ul>
 </nav>
 

@@ -25,19 +25,22 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // Recuperar os dados da tabela, ordenando pelos tempos mais recentes primeiro
-$sql = "SELECT * FROM tempos_tarefas WHERE user_id = :user_id ORDER BY timestamp DESC";
+$sql = "SELECT * FROM tempos_tarefas WHERE user_id = :user_id ORDER BY data_hora DESC"; // Alterado para data_hora
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
 $tempos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Função para calcular o tempo total de todas as faixas
+// Função para calcular o tempo total de todas as provas
 function calcularTempoTotal($tempos) {
     $totalSegundos = 0;
 
-    // Somar todas as faixas de tempo em segundos
+    // Somar todos os tempos formatados
     foreach ($tempos as $tempo) {
-        $totalSegundos += ($tempo['horas'] * 3600) + ($tempo['minutos'] * 60) + $tempo['segundos'];
+        // Extrair horas, minutos e segundos do formato HH:MM:SS
+        list($horas, $minutos, $segundos) = explode(':', $tempo['tempo_formatado']);
+        
+        $totalSegundos += ($horas * 3600) + ($minutos * 60) + $segundos;
     }
 
     // Converter o tempo total em horas, minutos e segundos
@@ -51,7 +54,6 @@ function calcularTempoTotal($tempos) {
 }
 
 $tempoTotal = calcularTempoTotal($tempos);
-
 ?>
 
 <?php
@@ -84,17 +86,10 @@ include '../menu.php';
                 <span><strong>User ID:</strong> <?= htmlspecialchars($tempo['user_id']) ?></span> <!-- Mostrar user_id para debug -->
                 
                 <!-- Exibir o tempo formatado HH:MM:SS -->
-                <span><strong>Tempo:</strong> 
-                    <?php
-                    $horas = str_pad($tempo['horas'], 2, '0', STR_PAD_LEFT);
-                    $minutos = str_pad($tempo['minutos'], 2, '0', STR_PAD_LEFT);
-                    $segundos = str_pad($tempo['segundos'], 2, '0', STR_PAD_LEFT);
-                    echo htmlspecialchars("$horas:$minutos:$segundos");
-                    ?>
-                </span>
+                <span><strong>Tempo:</strong> <?= htmlspecialchars($tempo['tempo_formatado']) ?></span>
                 
                 <span><strong>Prova Selecionada:</strong> <?= htmlspecialchars($tempo['prova_selecionada']) ?></span>
-                <span><strong>Data e Hora:</strong> <?= htmlspecialchars($tempo['timestamp']) ?></span>
+                <span><strong>Data e Hora:</strong> <?= htmlspecialchars($tempo['data_hora']) ?></span> <!-- Alterado para data_hora -->
             </div>
         <?php endforeach; ?>
     <?php else: ?>
