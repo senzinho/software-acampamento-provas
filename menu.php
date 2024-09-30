@@ -14,8 +14,8 @@
 
         /* Estilo do container do menu */
         nav {
-            background-color: #008000; /* Fundo verde */
-            padding: 10px 20px;
+            background-color: #006400; /* Verde mais escuro */
+            padding: 15px 20px;
             position: fixed;
             top: 0;
             left: 0;
@@ -24,12 +24,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
         }
 
         /* Ícone de hambúrguer */
         .hamburger {
             font-size: 30px;
-            color: black; /* Ícone de hambúrguer preto */
+            color: #FFFFFF; /* Ícone de hambúrguer branco */
             cursor: pointer;
             display: block;
             transition: transform 0.3s ease;
@@ -48,6 +49,8 @@
             flex-direction: column;
             width: 100%; /* Ocupa toda a largura em telas menores */
             text-align: center;
+            background-color: #008000; /* Cor verde para o menu */
+            
         }
 
         .menu li {
@@ -60,16 +63,16 @@
         }
 
         .menu li a {
-            color: black; /* Texto preto */
+            color: #FFFFFF; /* Texto branco */
             text-decoration: none;
             display: block;
             font-size: 18px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
         }
 
         .menu li a:hover {
             background-color: #32CD32; /* Cor verde mais clara ao passar o mouse */
-            padding-left: 10px;
+            padding-left: 15px; /* Efeito de deslocamento */
         }
 
         /* Responsividade e estilo para telas maiores */
@@ -83,6 +86,7 @@
                 flex-direction: row; /* Exibir horizontalmente */
                 justify-content: flex-end; /* Alinhar à direita */
                 width: auto;
+                background-color: transparent;
             }
 
             .menu li {
@@ -92,12 +96,12 @@
             .menu li a {
                 padding: 10px 20px;
                 font-size: 16px;
-                color: black; /* Texto preto em telas maiores */
+                color: #FFFFFF; /* Texto branco em telas maiores */
             }
 
             .menu li a:hover {
                 background-color: transparent;
-                color: #ff8800; /* Cor de destaque ao passar o mouse */
+                color: #FF8800; /* Cor de destaque ao passar o mouse */
             }
         }
 
@@ -115,11 +119,11 @@
         &#9776; <!-- Ícone de hambúrguer -->
     </div>
     <ul class="menu" id="menu">
-        <li><a href="#">Pontuação Geral</a></li>
+        <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/pontuacao_geral/">Pontuação/Placar</a></li>
         <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/faixas_tempo_user/">Meus Pontos</a></li>
         <li><a href="#">Adicionar Observação</a></li>
-        <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/">Jogar</a></li>
-        <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/login/logout.php">Logoff</a></li> <!-- Adicionando o link de logoff -->
+        <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/">Provas</a></li>
+        <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/login/logout.php">Sair</a></li>
     </ul>
 </nav>
 
