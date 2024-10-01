@@ -27,6 +27,7 @@ body {
     width: 100%;
     max-width: 400px; /* Limita a largura máxima em telas maiores */
     margin: 0 auto;
+   
 }
 
 /* Título do formulário */
@@ -97,6 +98,7 @@ button:hover {
 @media (max-width: 600px) {
     .container {
         padding: 15px;
+        height: 400px;
     }
 
     input[type="text"],
@@ -105,3 +107,4 @@ button:hover {
         font-size: 14px; /* Reduz o tamanho da fonte em telas pequenas */
     }
 }
+

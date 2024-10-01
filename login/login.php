@@ -36,6 +36,7 @@ try {
             // Armazena as informações do usuário na sessão
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
+            
 
             
             header("Location: ../index.php");
@@ -66,6 +67,14 @@ try {
             <input type="password" name="password" id="password" required>
             <button type="submit">Login</button>
         </form>
+    <br>
+    <div class="container-not">
+            <a href="http://localhost/aplicativo_acampamento_controle_de_provas/login/register.php" class="not"><strong><p class="not-cad">Não tem Cadastro ? Click aqui Geração</p></strong></a>
+        </div>
+
     </div>
+
+   
+
 </body>
 </html>

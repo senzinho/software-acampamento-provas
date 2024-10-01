@@ -2,15 +2,15 @@
 // Configurações do banco de dados
 $host = 'localhost';
 $dbname = 'tarefas_db';
-$username = 'root'; // Mude para seu usuário
-$password = 'root'; // Mude para sua senha
+$db_username = 'root'; // Mude para seu usuário
+$db_password = 'root'; // Mude para sua senha
 
 // Iniciar a sessão
 session_start();
 
 // Conectar ao banco de dados
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $db_username, $db_password);
     // Configurar o PDO para lançar exceções
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
@@ -24,6 +24,9 @@ if (!isset($_SESSION['user_id'])) {
 
 // Obter o ID do usuário da sessão
 $user_id = $_SESSION['user_id'];
+
+// Captura o username
+$username = $_SESSION['username']; // Adicione esta linha
 
 // Verificar se é uma requisição POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -55,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tempo_total = somarTempos($tempo_total, $tempo_formatado);
 
         // Preparar a query de inserção
-        $sql = "INSERT INTO tempos_tarefas (user_id, tempo_formatado, tempo_total_formatado, prova_selecionada) VALUES (:user_id, :tempo_formatado, :tempo_total_formatado, :prova_selecionada)";
+        $sql = "INSERT INTO tempos_tarefas (user_id, tempo_formatado, tempo_total_formatado, prova_selecionada, username) VALUES (:user_id, :tempo_formatado, :tempo_total_formatado, :prova_selecionada, :username)"; // Adicione `username` na query
         $stmt = $conn->prepare($sql);
 
         // Vincular os parâmetros e executar a query
@@ -63,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':tempo_formatado', $tempo_formatado, PDO::PARAM_STR);
         $stmt->bindParam(':tempo_total_formatado', $tempo_total, PDO::PARAM_STR);
         $stmt->bindParam(':prova_selecionada', $provaSelecionada, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR); // Adicione esta linha
 
         if ($stmt->execute()) {
             echo 'Tempo e prova salvos com sucesso no banco de dados! Tempo total atualizado: ' . $tempo_total;
@@ -101,3 +105,4 @@ function somarTempos($tempo1, $tempo2) {
     // Formatar o novo tempo total
     return sprintf('%02d:%02d:%02d', $novo_horas, $novo_minutos, $novo_segundos);
 }
+?>

@@ -15,19 +15,19 @@ try {
 
 // Recuperar o último tempo_total_formatado de cada usuário
 $sql = "
-    SELECT user_id, tempo_total_formatado
-    FROM tempos_tarefas
-    WHERE (user_id, data_hora) IN (
+    SELECT u.username, t.tempo_total_formatado
+    FROM tempos_tarefas t
+    JOIN usuarios u ON t.user_id = u.id
+    WHERE (t.user_id, t.data_hora) IN (
         SELECT user_id, MAX(data_hora) 
         FROM tempos_tarefas 
         GROUP BY user_id
     )
-    ORDER BY TIME_FORMAT(tempo_total_formatado, '%H:%i:%s') ASC
+    ORDER BY TIME_FORMAT(t.tempo_total_formatado, '%H:%i:%s') ASC
 ";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $tempos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +38,10 @@ $tempos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Painel de Últimos Tempos dos Usuários</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css"> <!-- Link para o CSS externo -->
-
 </head>
 <body>
 
 <?php
-
 // Incluindo o menu
 include '../menu.php';
 ?>
@@ -55,8 +53,8 @@ include '../menu.php';
         <thead>
             <tr>
                 <th>Posição</th>
-                <th>ID do Usuário</th>
-                <th>Último Tempo Total Formatado</th>
+                <th>Equipes</th> <!-- Alterado para Username -->
+                <th>Tempo Total</th>
             </tr>
         </thead>
         <tbody>
@@ -70,7 +68,7 @@ include '../menu.php';
                         ?>
                     ">
                         <td class="ranking"><?= ($index + 1) ?>º</td>
-                        <td><?= htmlspecialchars($tempo['user_id']) ?></td>
+                        <td><?= htmlspecialchars($tempo['username']) ?></td> <!-- Exibe o username -->
                         <td><?= htmlspecialchars($tempo['tempo_total_formatado']) ?></td>
                     </tr>
                 <?php endforeach; ?>

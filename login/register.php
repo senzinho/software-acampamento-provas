@@ -60,6 +60,13 @@ try {
             <input type="password" name="password" required>
             <button type="submit">Registrar</button>
         </form>
+
+        <br>
+        <div class="container-not">
+            <a href="http://localhost/aplicativo_acampamento_controle_de_provas/login/login.php"><p>Já tem Cadastro ? Click aqui Geração</p></a>
+        </div>
     </div>
+
+    
 </body>
 </html>

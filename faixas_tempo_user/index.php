@@ -17,12 +17,27 @@ try {
 }
 
 // Verificar se o usuário está logado
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['username'])) {
     die("Usuário não autenticado.");
 }
 
-// Obter o ID do usuário da sessão
-$user_id = $_SESSION['user_id'];
+// Obter o username da sessão
+$username = $_SESSION['username'];
+
+// Recuperar o user_id correspondente ao username
+$sql = "SELECT id FROM usuarios WHERE username = :username"; // Ajuste para o nome correto da tabela
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Verificar se o usuário foi encontrado
+if (!$user) {
+    die("Usuário não encontrado.");
+}
+
+// Obter o ID do usuário da consulta
+$user_id = $user['id'];
 
 // Recuperar os dados da tabela, ordenando pelos tempos mais recentes primeiro
 $sql = "SELECT * FROM tempos_tarefas WHERE user_id = :user_id ORDER BY data_hora DESC"; // Alterado para data_hora
@@ -74,8 +89,8 @@ include '../menu.php';
 <div class="container">
     <h1>Tempos Salvos</h1>
 
-    <!-- Mostrar o user_id da sessão para debug -->
-    <p class="debug-info"><strong>User ID da sessão (para debug):</strong> <?= htmlspecialchars($user_id) ?></p>
+    <!--Mostrar o username da sessão para debug 
+    <p class="debug-info"><strong>Username da sessão (para debug):</strong> </p> -->
 
     <!-- Mostrar o tempo total -->
     <p class="total"><strong>Tempo Total de todas as Provas:</strong> <?= htmlspecialchars($tempoTotal) ?></p>
@@ -83,7 +98,7 @@ include '../menu.php';
     <?php if (count($tempos) > 0): ?>
         <?php foreach ($tempos as $tempo): ?>
             <div class="faixa">
-                <span><strong>User ID:</strong> <?= htmlspecialchars($tempo['user_id']) ?></span> <!-- Mostrar user_id para debug -->
+                <span><strong>Equipe:</strong> <?= htmlspecialchars($username) ?></span> <!-- Mostrar username para debug -->
                 
                 <!-- Exibir o tempo formatado HH:MM:SS -->
                 <span><strong>Tempo:</strong> <?= htmlspecialchars($tempo['tempo_formatado']) ?></span>
