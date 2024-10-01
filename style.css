@@ -155,3 +155,12 @@ button:hover {
 #btnCancelar {
     background-color: #dc3545; /* Cor para o botão cancelar */
 }
+
+
+.menu li a {
+    color: #000000;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}

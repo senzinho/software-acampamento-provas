@@ -49,7 +49,7 @@
             flex-direction: column;
             width: 100%; /* Ocupa toda a largura em telas menores */
             text-align: center;
-            background-color: #008000; /* Cor verde para o menu */
+            background-color: #006400; /* Cor verde para o menu */
             
         }
 
@@ -63,7 +63,7 @@
         }
 
         .menu li a {
-            color: #FFFFFF; /* Texto branco */
+            color: black; /* Texto branco */
             text-decoration: none;
             display: block;
             font-size: 18px;
