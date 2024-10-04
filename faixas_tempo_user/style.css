@@ -106,3 +106,41 @@ h1 {
 }
 
 
+.pontos {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.input-pontos {
+    width: 70px;
+    padding: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn-editar, .btn-salvar {
+    padding: 8px 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-salvar {
+    background-color: #28a745;
+}
+
+.btn-editar:hover, .btn-salvar:hover {
+    opacity: 0.9;
+}
+
+.btn-editar:disabled, .btn-salvar:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

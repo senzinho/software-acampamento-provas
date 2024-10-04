@@ -22,10 +22,14 @@ include 'menu.php';
         <h2>Selecione sua Prova</h2>
         <div class="opcoes-provas">
             <ul id="lista-provas">
-                <li data-value="Prova 1">Prova 1</li>
-                <li data-value="Prova 2">Prova 2</li>
-                <li data-value="Prova 3">Prova 3</li>
-                <li data-value="Prova 4">Prova 4</li>
+                <li data-value="Tangram prova 1">Tangram sexta a noite</li>
+                <li data-value="Sabado 8 h prova 2">Sabado 8 h prova 2</li>
+                <li data-value="Vencendo os medos enfrentando o dragão - Pova 3">Vencendo os medos enfrentando o dragão 10:40</li>
+                <li data-value="Prova de amor maior não há 15:50 h - Prova 4">Prova de amor maior não há 15:50 h</li>
+                <li data-value="Caça ao tesouro 9 h - Prova 5">Prova de amor maior não há 15:50 h</li>
+                <li data-value="Aguas que purificam 12:00">Aguas que purificam 12:00</li>
+
+
                 
 
             </ul>
