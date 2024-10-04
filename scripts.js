@@ -1,5 +1,3 @@
-
-
 let horas = 0;
 let minutos = 0;
 let segundos = 0;
@@ -70,8 +68,6 @@ function finalizarCronometro() {
     }
 }
 
-
-
 function atualizarDisplay() {
     horasEl.textContent = horas < 10 ? `0${horas}` : horas;
     minutosEl.textContent = minutos < 10 ? `0${minutos}` : minutos;
@@ -101,16 +97,20 @@ function enviarTempo() {
     xhr.send(`horas=${horas}&minutos=${minutos}&segundos=${segundos}&prova_selecionada=${provaSalva}`);
 }
 
-// Seleção das provas (sem alterações)
+// Seleção das provas
 const listaProvas = document.getElementById('lista-provas');
 const salvarButton = document.getElementById('salvar');
 const mensagem = document.getElementById('mensagem');
 let provaSelecionada = null;
 
-// Adiciona evento de clique para cada item da lista
+// Adiciona evento de clique para cada item da lista, incluindo submenus
 listaProvas.querySelectorAll('li').forEach(item => {
-    item.addEventListener('click', function() {
-        const value = this.getAttribute('data-value');
+    item.addEventListener('click', function(event) {
+        // Impede a propagação do evento para que os cliques não ativem itens pais
+        event.stopPropagation();
+
+        // Verifica se o item é um submenu e, se sim, salva seu valor
+        const value = this.getAttribute('data-value') || this.textContent.trim();
         
         // Remove a seleção da prova anterior, se houver
         if (provaSelecionada) {
@@ -126,7 +126,7 @@ listaProvas.querySelectorAll('li').forEach(item => {
 // Evento para salvar a seleção
 salvarButton.addEventListener('click', function() {
     if (provaSelecionada) {
-        const provaSalva = provaSelecionada.getAttribute('data-value');
+        const provaSalva = provaSelecionada.getAttribute('data-value') || provaSelecionada.textContent.trim();
         localStorage.setItem('provaSelecionada', provaSalva);
         mensagem.innerText = 'Seleção salva com sucesso: ' + provaSalva;
     } else {
@@ -138,7 +138,8 @@ salvarButton.addEventListener('click', function() {
 window.onload = function() {
     const provaSalva = localStorage.getItem('provaSelecionada');
     if (provaSalva) {
-        const listItem = listaProvas.querySelector(`li[data-value="${provaSalva}"]`);
+        // Busca o item pela data salva
+        const listItem = listaProvas.querySelector(`li[data-value="${provaSalva}"]`) || Array.from(listaProvas.querySelectorAll('li')).find(item => item.textContent.trim() === provaSalva);
         if (listItem) {
             listItem.classList.add('selected'); // Marca como selecionada
             provaSelecionada = listItem; // Armazena a prova selecionada

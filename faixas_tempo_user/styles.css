@@ -1,0 +1,144 @@
+ /* Reset básico */
+ * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo do corpo */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #F3F4F6, #E2E8F0);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container principal */
+.container {
+    max-width: 600px; /* Limitar largura para dispositivos móveis */
+    margin: 20px auto; /* Centralizar */
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+h1 {
+    color: #D62976; /* Cor do Instagram */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para a seção de tempo total */
+.total {
+    background: #FFB800; /* Cor de fundo do total */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Estilo das faixas */
+.faixa {
+    background: #ffffff;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito ao passar o mouse sobre as faixas */
+.faixa:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo dos pontos */
+.pontos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Estilo do botão de salvar */
+.btn-salvar {
+    background: #D62976; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex: 1; /* Ocupa o espaço disponível */
+    margin-left: 10px; /* Espaço entre o botão e o input */
+}
+
+/* Efeito ao passar o mouse sobre o botão de salvar */
+.btn-salvar:hover {
+    background: #E1306C; /* Cor de hover do botão */
+}
+
+/* Estilo do input de pontos */
+.input-pontos {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #E5E7EB;
+    border-radius: 5px;
+    margin: 0 10px;
+    padding: 5px; /* Adiciona padding para melhor usabilidade */
+}
+
+/* Estilo dos botões de incremento e decremento */
+.btn-alterar {
+    background: linear-gradient(135deg, #D62976, #F58529); /* Gradiente do Instagram */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 40px; /* Largura dos botões */
+    height: 40px; /* Altura dos botões */
+    font-size: 1.5rem; /* Tamanho da fonte */
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Efeito ao passar o mouse sobre os botões de alterar */
+.btn-alterar:hover {
+    background: linear-gradient(135deg, #E1306C, #F7C9B7); /* Cor de hover do botão */
+}
+
+/* Estilo para mensagem quando não há tempos */
+.no-tempos {
+    text-align: center;
+    color: #6B7280; /* Cor para texto neutro */
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .faixa {
+        flex-direction: column;
+    }
+
+    .pontos {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .input-pontos {
+        margin: 5px 0;
+    }
+
+    .btn-salvar {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

@@ -9,13 +9,12 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            
+            background-color: #f4f4f4;  
         }
 
         /* Estilo do container do menu */
         nav {
-            background-color: #006400; /* Verde mais escuro */
+            background: linear-gradient(90deg, #F58529, #DD2A7B, #8134B8, #515BD4, #00BFFF); /* Cores do Instagram */
             padding: 15px 20px;
             position: fixed;
             top: 0;
@@ -50,13 +49,12 @@
             flex-direction: column;
             width: 100%; /* Ocupa toda a largura em telas menores */
             text-align: center;
-            background-color: #006400; /* Cor verde para o menu */
-            
+            background-color: transparent; /* Fundo transparente para o menu */
         }
 
         .menu li {
             padding: 15px 0;
-            border-bottom: 1px solid #006400; /* Cor da borda mais escura */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Borda branca com opacidade */
         }
 
         .menu li:last-child {
@@ -64,7 +62,7 @@
         }
 
         .menu li a {
-            color: black; /* Texto branco */
+            color: #FFFFFF; /* Texto branco */
             text-decoration: none;
             display: block;
             font-size: 18px;
@@ -72,7 +70,7 @@
         }
 
         .menu li a:hover {
-            background-color: #32CD32; /* Cor verde mais clara ao passar o mouse */
+            background-color: rgba(255, 255, 255, 0.2); /* Cor branca semitransparente ao passar o mouse */
             padding-left: 15px; /* Efeito de deslocamento */
         }
 
@@ -87,7 +85,7 @@
                 flex-direction: row; /* Exibir horizontalmente */
                 justify-content: flex-end; /* Alinhar à direita */
                 width: auto;
-                background-color: transparent;
+                background-color: transparent; /* Fundo transparente para o menu */
             }
 
             .menu li {

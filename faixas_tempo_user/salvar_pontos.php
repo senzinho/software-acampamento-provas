@@ -10,26 +10,24 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die(json_encode(['success' => false, 'message' => 'Erro de conexão: ' . $e->getMessage()]));
+    die("Erro de conexão: " . $e->getMessage());
 }
 
-// Verificar se os dados foram enviados corretamente
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['pontos'])) {
-    $id = (int)$_POST['id'];
+// Verificar se o POST contém pontos e tempo_id
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pontos'], $_POST['tempo_id'])) {
     $pontos = (int)$_POST['pontos'];
+    $tempo_id = (int)$_POST['tempo_id'];
 
     // Atualizar os pontos na tabela tempos_tarefas
-    $sql = "UPDATE tempos_tarefas SET pontos = :pontos WHERE id = :id";
+    $sql = "UPDATE tempos_tarefas SET pontos = :pontos WHERE id = :tempo_id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':pontos', $pontos, PDO::PARAM_INT);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':tempo_id', $tempo_id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Erro ao atualizar pontos.']);
+        echo json_encode(['success' => false]);
     }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Dados inválidos.']);
 }
 ?>

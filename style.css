@@ -84,7 +84,7 @@ ul {
 li {
     padding: 10px;
     margin: 5px 0;
-    background-color: #cbcbcb; /* Cor de fundo dos itens da lista */
+    background: #c8c8c8;
     cursor: pointer;
     border-radius: 5px;
 }
@@ -103,7 +103,7 @@ button {
     width: 100%;
     padding: 10px;
     background-color: #5cb85c; /* Cor verde */
-    color: black; /* Cor do texto no botão */
+    color: rgb(248, 240, 240); /* Cor do texto no botão */
     border: none;
     border-radius: 5px;
     cursor: pointer;

@@ -52,13 +52,21 @@ tr:hover {
 }
 
 .gold {
-    background-color: #ffd700;
+    background-color: #F58529; /* Cor Laranja */
 }
 
-.silver {
-    background-color: #c0c0c0;
+.pink {
+    background-color: #DD2A7B; /* Cor Rosa */
 }
 
-.platinum {
-    background-color: #e5e4e2;
+.purple {
+    background-color: #8134B8; /* Cor Roxa */
+}
+
+.yellow {
+    background-color: #F9D249; /* Cor Amarela */
+}
+
+.blue {
+    background-color: #4A4BFD; /* Cor Azul */
 }

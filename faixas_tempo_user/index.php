@@ -76,25 +76,20 @@ function calcularTempoTotal($tempos) {
 
 $tempoTotal = calcularTempoTotal($tempos);
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Pontos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
+    <?php include '../menu.php'; ?>
 
-<?php
-// Incluindo o menu
-include '../menu.php';
-?>
     <div class="container">
         <h1>Tempos Salvos</h1>
-
-        <!-- Mostrar o tempo total -->
         <p class="total"><strong>Tempo Total de todas as Provas:</strong> <?= htmlspecialchars($tempoTotal) ?></p>
 
         <?php if (count($tempos) > 0): ?>
@@ -102,51 +97,34 @@ include '../menu.php';
                 <div class="faixa">
                     <span><strong>Equipe:</strong> <?= htmlspecialchars($username) ?></span>
                     <span><strong>Tempo:</strong> <?= htmlspecialchars($tempo['tempo_formatado']) ?></span>
-                    <span><strong>Prova Selecionada:</strong> <?= htmlspecialchars($tempo['prova_selecionada']) ?></span>
-                    <span><strong>Data e Hora:</strong> <?= htmlspecialchars($tempo['data_hora']) ?></span>
-
-                    <!-- Campo para inserir a quantidade de pontos -->
+                    <span><strong>Prova:</strong> <?= htmlspecialchars($tempo['prova_selecionada']) ?></span>
                     <div class="pontos">
-                        <label for="pontos_<?= $tempo['id'] ?>"><strong>Pontos:</strong></label>
-                        <input type="number" id="pontos_<?= $tempo['id'] ?>" name="pontos" value="<?= htmlspecialchars($tempo['pontos']) ?>" class="input-pontos" disabled>
-                        <button class="btn-editar" onclick="habilitarEdicao(<?= $tempo['id'] ?>)">Editar</button>
-                        <button class="btn-salvar" onclick="salvarPontos(<?= $tempo['id'] ?>)">Salvar</button>
+                        <button class="btn-alterar" onclick="alterarPontos(<?= $tempo['id'] ?>, -1)">-</button>
+                        <input type="text" class="input-pontos" id="input_pontos_<?= $tempo['id'] ?>" value="<?= htmlspecialchars($tempo['pontos']) ?>">
+                        <button class="btn-alterar" onclick="alterarPontos(<?= $tempo['id'] ?>, 1)">+</button>
+                        <form method="post" action="">
+                            <input type="hidden" name="tempo_id" value="<?= htmlspecialchars($tempo['id']) ?>">
+                            <input type="hidden" name="pontos" id="pontos_<?= $tempo['id'] ?>" value="<?= htmlspecialchars($tempo['pontos']) ?>">
+                            <button type="submit" class="btn-salvar">Salvar</button>
+                        </form>
                     </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class="no-tempos">Nenhum tempo salvo encontrado.</p>
+            <p class="no-tempos">Nenhum tempo salvo até o momento.</p>
         <?php endif; ?>
     </div>
 
     <script>
-        function habilitarEdicao(id) {
-            document.getElementById('pontos_' + id).disabled = false;
+        function alterarPontos(tempoId, incremento) {
+            var input = document.getElementById(`input_pontos_${tempoId}`); // Seleciona o input correto
+            var pontos = parseInt(input.value) || 0; // Pega o valor atual ou 0 se não for um número
+            pontos += incremento; // Aplica o incremento
+            input.value = Math.max(0, pontos); // Impede que o valor fique negativo
+            document.getElementById(`pontos_${tempoId}`).value = input.value; // Atualiza o valor do campo oculto
         }
 
-        function salvarPontos(id) {
-            var pontos = document.getElementById('pontos_' + id).value;
-
-            // Fazer requisição AJAX para salvar os pontos no banco de dados
-            fetch('salvar_pontos.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `id=${id}&pontos=${pontos}` // Enviar dados via POST
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Pontos salvos com sucesso!');
-                    document.getElementById('pontos_' + id).disabled = true;
-                } else {
-                    alert('Erro ao salvar pontos.');
-                }
-            })
-            .catch(error => console.error('Erro:', error));
-        }
-
+        
     </script>
 </body>
 </html>
