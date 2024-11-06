@@ -18,17 +18,14 @@ $tempos = []; // Sempre inicializa como um array vazio
 // Recuperar o último tempo_total_formatado de cada usuário e a soma de seus pontos
 try {
     $sql = "
-        SELECT u.username, t.tempo_total_formatado, SUM(t.pontos) AS total_pontos
-        FROM tempos_tarefas t
-        JOIN usuarios u ON t.user_id = u.id
-        WHERE (t.user_id, t.data_hora) IN (
-            SELECT user_id, MAX(data_hora) 
-            FROM tempos_tarefas 
-            GROUP BY user_id
-        )
-        GROUP BY u.username, t.tempo_total_formatado
-        ORDER BY total_pontos DESC, TIME_FORMAT(t.tempo_total_formatado, '%H:%i:%s') ASC
-    ";
+    SELECT u.username, 
+           SEC_TO_TIME(SUM(TIME_TO_SEC(t.tempo_total_formatado))) AS tempo_total_formatado, 
+           SUM(t.pontos) AS total_pontos
+    FROM tempos_tarefas t
+    JOIN usuarios u ON t.user_id = u.id
+    GROUP BY u.username
+    ORDER BY total_pontos DESC, SUM(TIME_TO_SEC(t.tempo_total_formatado)) ASC
+";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $tempos = $stmt->fetchAll(PDO::FETCH_ASSOC);

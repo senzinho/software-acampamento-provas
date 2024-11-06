@@ -51,6 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pontos'], $_POST['tem
     $stmt->bindParam(':tempo_id', $tempo_id, PDO::PARAM_INT);
     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
+
+    // Define uma mensagem de sucesso na sessão
+    $_SESSION['message'] = "Dados salvos com sucesso!";
 }
 
 // Recuperar os dados da tabela, ordenando pelos tempos mais recentes primeiro
@@ -83,7 +86,6 @@ $tempoTotal = calcularTempoTotal($tempos);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Pontos</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
     <?php include '../menu.php'; ?>
@@ -91,6 +93,13 @@ $tempoTotal = calcularTempoTotal($tempos);
     <div class="container">
         <h1>Tempos Salvos</h1>
         <p class="total"><strong>Tempo Total de todas as Provas:</strong> <?= htmlspecialchars($tempoTotal) ?></p>
+
+        <?php if (isset($_SESSION['message'])): ?>
+            <script>
+                alert("<?= addslashes($_SESSION['message']) ?>"); // Exibe o alerta
+            </script>
+            <?php unset($_SESSION['message']); // Limpa a mensagem após exibi-la ?>
+        <?php endif; ?>
 
         <?php if (count($tempos) > 0): ?>
             <?php foreach ($tempos as $tempo): ?>
@@ -123,8 +132,6 @@ $tempoTotal = calcularTempoTotal($tempos);
             input.value = Math.max(0, pontos); // Impede que o valor fique negativo
             document.getElementById(`pontos_${tempoId}`).value = input.value; // Atualiza o valor do campo oculto
         }
-
-        
     </script>
 </body>
 </html>

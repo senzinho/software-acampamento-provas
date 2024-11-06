@@ -120,10 +120,13 @@
     <ul class="menu" id="menu">
         <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/pontuacao_geral/">Pontuação/Placar</a></li>
         <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/faixas_tempo_user/">Meus Pontos</a></li>
-        <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/provas_adicionais/">Provas Surpresa</a></li>
+        <!--<li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/provas_adicionais/">Provas Surpresa</a></li>-->
         <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/">Provas</a></li>
         <li><a href="http://localhost/aplicativo_acampamento_controle_de_provas/login/logout.php">Sair</a></li>
+        
     </ul>
+
+    <img src="logo.png" width="100px">
 </nav>
 
 <script>
